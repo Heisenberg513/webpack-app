@@ -36,5 +36,14 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "liveServer.settings.port": 5502,
-  "cSpell.words": ["codepaths", "tsbuildinfo"]
+  "cSpell.words": [
+    "analy",
+    "chunkhash",
+    "codepaths",
+    "commitlint",
+    "flac",
+    "pmmmwh",
+    "purgecss",
+    "tsbuildinfo"
+  ]
 }

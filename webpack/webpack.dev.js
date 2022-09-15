@@ -2,13 +2,13 @@
 const path = require('path')
 const { merge } = require('webpack-merge')
 const baseConfig = require('./webpack.base.js')
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 
 // 合并公共配置,并添加开发环境配置
 module.exports = merge(baseConfig, {
   mode: 'development', // 开发模式,打包更加快速,省了代码优化步骤
   plugins: [
-    new ReactRefreshWebpackPlugin(), // 添加热更新插件
+    new ReactRefreshWebpackPlugin() // 添加热更新插件
   ],
   devtool: 'eval-cheap-module-source-map', // 源码调试模式,后面会讲
   devServer: {
@@ -18,7 +18,7 @@ module.exports = merge(baseConfig, {
     historyApiFallback: true, // 解决history路由404问题
     open: true,
     static: {
-      directory: path.join(__dirname, "../public"), //托管静态资源public文件夹
+      directory: path.join(__dirname, '../public') //托管静态资源public文件夹
     }
   }
 })
