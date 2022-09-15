@@ -1,14 +1,14 @@
 // webpack.prod.js
-const path = require('path');
-const CopyPlugin = require('copy-webpack-plugin');
-const { merge } = require('webpack-merge');
-const baseConfig = require('./webpack.base.js');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
+const path = require('path')
+const CopyPlugin = require('copy-webpack-plugin')
+const { merge } = require('webpack-merge')
+const baseConfig = require('./webpack.base.js')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
 const globAll = require('glob-all')
-const {PurgeCSSPlugin} = require('purgecss-webpack-plugin')
-const CompressionPlugin  = require('compression-webpack-plugin')
+const { PurgeCSSPlugin } = require('purgecss-webpack-plugin')
+const CompressionPlugin = require('compression-webpack-plugin')
 
 module.exports = merge(baseConfig, {
   mode: 'production', // 生产模式,会开启tree-shaking和压缩代码,以及其他优化
@@ -35,7 +35,7 @@ module.exports = merge(baseConfig, {
         path.join(__dirname, '../public/index.html')
       ]),
       safelist: {
-        standard: [/^ant-/], // 过滤以ant-开头的类名，哪怕没用到也不删除
+        standard: [/^ant-/] // 过滤以ant-开头的类名，哪怕没用到也不删除
       }
     }),
     new CompressionPlugin({
@@ -81,5 +81,8 @@ module.exports = merge(baseConfig, {
         }
       }
     }
+  },
+  stats: {
+    logging: 'verbose'
   }
-});
+})

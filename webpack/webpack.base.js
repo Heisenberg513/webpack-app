@@ -15,6 +15,28 @@ module.exports = {
     clean: true, // webpack4需要配置clean-webpack-plugin来删除dist文件,webpack5内置了
     publicPath: '/' // 打包后文件的公共前缀路径
   },
+  // 插件
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, '../public/index.html'), // 模板取定义root节点的模板
+      inject: true // 自动注入静态资源
+    }),
+    new webpack.DefinePlugin({
+      'process.env.BASE_ENV': JSON.stringify(process.env.BASE_ENV)
+    }),
+    new webpack.DefinePlugin({
+      BASE_URL: isDev ? '"./"' : '"/"' //添加全局变量
+    }),
+    new webpack.ProgressPlugin({
+      activeModules: true, // 默认false，显示活动模块计数和一个活动模块正在进行消息。
+      entries: true, // 默认true，显示正在进行的条目计数消息。
+      modules: false, // 默认true，显示正在进行的模块计数消息。
+      modulesCount: 5000, // 默认5000，开始时的最小模块数。PS:modules启用属性时生效。
+      profile: false, // 默认false，告诉ProgressPlugin为进度步骤收集配置文件数据。
+      dependencies: false, // 默认true，显示正在进行的依赖项计数消息。
+      dependenciesCount: 10000 // 默认10000，开始时的最小依赖项计数。PS:dependencies启用属性时生效。
+    })
+  ],
   module: {
     rules: [
       {
@@ -86,19 +108,6 @@ module.exports = {
     },
     modules: [path.resolve(__dirname, '../node_modules'), 'node_modules'] // 查找第三方模块只在本项目的node_modules中查找
   },
-  // 插件
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '../public/index.html'), // 模板取定义root节点的模板
-      inject: true // 自动注入静态资源
-    }),
-    new webpack.DefinePlugin({
-      'process.env.BASE_ENV': JSON.stringify(process.env.BASE_ENV)
-    }),
-    new webpack.DefinePlugin({
-      BASE_URL: isDev ? '"./"' : '"/"' //添加全局变量
-    })
-  ],
   cache: {
     type: 'filesystem' // 使用文件缓存
   }

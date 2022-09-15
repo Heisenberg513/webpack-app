@@ -1,10 +1,9 @@
 module.exports = {
   plugins: [
-    process.env.NODE_ENV === 'development' &&
-      require.resolve('react-refresh/babel'),
+    process.env.NODE_ENV === 'development' && require.resolve('react-refresh/babel'),
     ['@babel/plugin-proposal-decorators', { legacy: true }]
   ].filter(Boolean),
-  // 预设执行顺序由右往左,所以先处理ts,再处理jsx
+  // 预设执行顺序由右往左,所以先处理ts,再处理tsx
   presets: [
     [
       '@babel/preset-env',
@@ -16,4 +15,4 @@ module.exports = {
     '@babel/preset-react',
     '@babel/preset-typescript'
   ]
-};
+}
